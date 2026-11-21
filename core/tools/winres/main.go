@@ -73,7 +73,7 @@ func run(p program) error {
 		winversion.InternalName:     p.name,
 		// The publisher, as in the installer (AppPublisher) and the app.
 		winversion.CompanyName:    "Akad Web",
-		winversion.LegalCopyright: "Copyright (c) 2026 Akad Web; based on Arman VPN (GPLv3)",
+		winversion.LegalCopyright: "Copyright (c) 2026 Akad Web (GPLv3); upstream attribution in README",
 	} {
 		if err := vi.Set(winversion.LangDefault, key, value); err != nil {
 			return err

@@ -167,7 +167,7 @@ static GtkWidget* build_menu(DesktopBridge* self, FlValue* items, bool rtl,
 // tray_icon is the icon at path as the tray takes it: a name in an icon
 // folder of the app's own, where each icon is copied once, rather than the
 // file path, which some trays (StatusNotifierItem hosts) do not resolve.
-// The name is armanvpntray_<file>: no theme has it, and it has no dash,
+// The name is akadvpntray_<file>: no theme has it, and it has no dash,
 // since KDE looks a name up in the system's theme first and drops its
 // dashed parts until one matches ("akad-vpn-off" showed Firefox's own
 // icon). Without the library's icon folder call, the path goes.
@@ -187,7 +187,7 @@ static std::string tray_icon(DesktopBridge* self, const gchar* path) {
   if (dot) {
     *dot = '\0';
   }
-  std::string name = std::string("armanvpntray_") + base;
+  std::string name = std::string("akadvpntray_") + base;
   if (self->icons_copied.insert(name).second) {
     g_autofree gchar* data = nullptr;
     gsize length = 0;
