@@ -1,0 +1,39 @@
+name: Verify iOS integration
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ios/native-bridge
+          persist-credentials: true
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.50.0'
+          channel: stable
+      - name: Build iOS icons from supplied Akad Web artwork
+        run: |
+          python3 -m pip install --quiet --user pillow
+          python3 app/tool/app_icons.py
+      - name: Commit generated iOS icons
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app/ios/Runner/Assets.xcassets/AppIcon.appiconset
+          if ! git diff --cached --quiet; then
+            git commit -m "ios: apply original Akad Web app icon"
+            git push origin HEAD:ios/native-bridge
+          fi
+      - name: Resolve packages
+        working-directory: app
+        run: flutter pub get
+      - name: Compile iOS app without signing
+        working-directory: app
+        run: flutter build ios --release --no-codesign
