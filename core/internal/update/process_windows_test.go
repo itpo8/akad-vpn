@@ -37,7 +37,7 @@ func TestTheInstalledVersionIsSetForSetupsFolderOnly(t *testing.T) {
 	if err := setInstalledVersion(`D:\Portable\AkadVPN`, "1.2.3"); err != nil || version() != "1.0.0" {
 		t.Fatalf("another folder: %v, %q", err, version())
 	}
-	if err := setInstalledVersion(`c:\apps\arman vpn`, "1.12.3"); err != nil || version() != "1.12.3" {
+	if err := setInstalledVersion(`c:\apps\AkadVPN`, "1.12.3"); err != nil || version() != "1.12.3" {
 		t.Fatalf("Setup's folder: %v, %q", err, version())
 	}
 	for name, want := range map[string]uint64{"MajorVersion": 1, "VersionMajor": 1, "MinorVersion": 12, "VersionMinor": 12} {
