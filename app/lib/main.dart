@@ -12,6 +12,7 @@ import 'core/core_process.dart';
 import 'core/ports.dart';
 import 'core/tun_service.dart';
 import 'desktop/desktop_integration.dart';
+import 'ios/ios_app.dart';
 import 'ui/app.dart';
 
 /// The desktop app starts the core as its child process (`-app`) and stops
@@ -21,6 +22,7 @@ import 'ui/app.dart';
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isAndroid) return runAndroid();
+  if (Platform.isIOS) return runIOS();
   final dataDir = CoreLocator.dataDir(args);
   final settings = await AppSettings.load(dataDir);
   final process = CoreProcess(
