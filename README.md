@@ -36,8 +36,8 @@ resources, notification icon, tray indicators and dashboard logos, run
 
 <div align="center">
 
-[![Downloads](https://img.shields.io/github/downloads/itpo8/akad-vpn/total?style=flat-square&logo=github&label=Downloads)](https://github.com/itpo8/akad-vpn/releases)
-[![Last Version](https://img.shields.io/github/v/release/itpo8/akad-vpn?style=flat-square&label=Version)](https://github.com/itpo8/akad-vpn/releases/latest)
+[![Downloads](https://img.shields.io/badge/Downloads-AkadVPN%20v1.0.19-2ea44f?style=flat-square&logo=github)](https://github.com/itpo8/akad-vpn/releases)
+[![Last Version](https://img.shields.io/badge/Version-v1.0.19-0969da?style=flat-square)](https://github.com/itpo8/akad-vpn/releases/latest)
 [![License](https://img.shields.io/github/license/itpo8/akad-vpn?style=flat-square&label=License)](LICENSE)
 [![Telegram](https://img.shields.io/badge/Telegram-AkadVPNClient-26A5E4?style=flat-square&logo=telegram&logoColor=white)](https://t.me/AkadVPNClient)
 
