@@ -2,35 +2,35 @@ name: Verify iOS Packet Tunnel target
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'scripts/setup-ios-packet-tunnel.rb'
+      - '.github/workflows/ios-packet-tunnel.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'scripts/setup-ios-packet-tunnel.rb'
+      - '.github/workflows/ios-packet-tunnel.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   packet-tunnel:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
-        with:
-          ref: ios/packet-tunnel
-          persist-credentials: true
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.50.0'
           channel: stable
-      - name: Configure Xcode extension target
+      - name: Verify Xcode extension target
         run: |
           gem install --user-install xcodeproj --no-document
           ruby scripts/setup-ios-packet-tunnel.rb
-      - name: Commit Xcode project
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add app/ios/Runner.xcodeproj/project.pbxproj
-          if ! git diff --cached --quiet; then
-            git commit -m "ios: embed Packet Tunnel extension target"
-            git push origin HEAD:ios/packet-tunnel
-          fi
       - name: Flutter packages
         working-directory: app
         run: flutter pub get
