@@ -11,4 +11,4 @@ PRODUCT_NAME = AkadVPN
 PRODUCT_BUNDLE_IDENTIFIER = com.akadweb.akadvpn
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2026 Akad Web. GPLv3; upstream Arman VPN credits retained.
+PRODUCT_COPYRIGHT = Copyright © 2026 Akad Web. GPLv3; upstream attribution in README.
