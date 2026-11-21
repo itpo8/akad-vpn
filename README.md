@@ -51,7 +51,7 @@ resources, notification icon, tray indicators and dashboard logos, run
 
 For **Android, Windows, macOS, and Linux**; completely free, with no ads.
 
-<p align="center"><a href="https://raw.githubusercontent.com/itpo8/akad-vpn/main/docs/screenshots/main.webp" target="_blank"><img src="docs/screenshots/main.webp" width="720" alt="AkadVPN"></a></p>
+<p align="center"><img src="docs/screenshots/akad-vpn-desktop.png" width="900" alt="Actual AkadVPN desktop interface on Windows, Persian language"></p>
 
 ## 🚀 Main features
 
@@ -89,11 +89,7 @@ For **Android, Windows, macOS, and Linux**; completely free, with no ads.
 
 ## 📸 Screenshots
 
-<p align="center">
-<img src="docs/screenshots/phone_01.webp" width="240" alt="Home">&nbsp;&nbsp;
-<img src="docs/screenshots/phone_02.webp" width="240" alt="Servers">&nbsp;&nbsp;
-<img src="docs/screenshots/phone_03.webp" width="240" alt="Settings">
-</p>
+The image above is an authentic screenshot of AkadVPN for Windows. Mobile screenshots will be added after they are captured from AkadVPN on a phone.
 
 ## 📥 Download
 
@@ -130,7 +126,7 @@ curl -fsSL https://raw.githubusercontent.com/itpo8/akad-vpn/main/install.sh | ba
 
 For Linux servers, AkadVPN has a **web panel** that opens in any browser and has everything the app has: managing accounts and data, choosing a server and testing delay, the connection test, the live log, and every setting.
 
-<p align="center"><img src="docs/screenshots/web.webp" width="720" alt="Web panel"></p>
+The AkadVPN web panel screenshot will be added after capture from the running panel.
 
 - **Panel address:** `http://SERVER-IP:10820/app/`, with a username and password. The exact address is shown at the end of the install.
 - **Proxy:** SOCKS5 and HTTP on port `10810`, with a username and password of its own.
