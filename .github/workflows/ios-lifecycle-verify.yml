@@ -12,8 +12,6 @@ jobs:
     timeout-minutes: 50
     steps:
       - uses: actions/checkout@v7
-        with:
-          ref: ios/core-lifecycle
       - uses: actions/setup-go@v6
         with:
           go-version-file: core/go.mod
