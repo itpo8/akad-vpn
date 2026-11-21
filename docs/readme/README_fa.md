@@ -28,7 +28,11 @@
 
 &rlm;برای **اندروید، ویندوز، مک و لینوکس**؛ کاملا رایگان، بدون تبلیغات.
 
-<p align="center"><a href="https://raw.githubusercontent.com/itpo8/akad-vpn/main/docs/screenshots/main.webp" target="_blank"><img src="../screenshots/main.webp" width="720" alt="AkadVPN"></a></p>
+<p align="center"><img src="../screenshots/akad-vpn-desktop.png" width="900" alt="نمای واقعی AkadVPN در ویندوز"></p>
+
+<p align="center"><img src="../screenshots/akad-vpn-devices-mockup.webp" width="900" alt="ماکاپ معرفی AkadVPN در لپ‌تاپ و موبایل"></p>
+
+<p align="center"><sub>تصویر دستگاه‌ها طرح نمایشی است، نه اسکرین‌شات ثبت‌شده از برنامه‌های در حال اجرا.</sub></p>
 
 ## 🚀 امکانات اصلی
 
@@ -60,11 +64,9 @@
 
 ## 📸 تصاویر
 
-<p align="center" dir="ltr">
-<img src="../screenshots/phone_01.webp" width="240" alt="Home">&nbsp;&nbsp;
-<img src="../screenshots/phone_02.webp" width="240" alt="Servers">&nbsp;&nbsp;
-<img src="../screenshots/phone_03.webp" width="240" alt="Settings">
-</p>
+<p align="center"><img src="../screenshots/akad-vpn-mobile-mockup.webp" width="900" alt="طرح نمایشی صفحات خانه، سرورها و تنظیمات AkadVPN در موبایل"></p>
+
+تصویر دسکتاپ بالا واقعی است؛ تصاویر موبایل ماکاپ نمایشی هستند. اسکرین‌شات‌های واقعی بعد از آزمایش روی گوشی اضافه می‌شوند.
 
 ## 📥 دانلود مستقیم
 
@@ -104,7 +106,9 @@ curl -fsSL https://raw.githubusercontent.com/itpo8/akad-vpn/main/install.sh | ba
 
 برای سرورهای لینوکس، AkadVPN یک **پنل تحت وب** دارد که در هر مرورگری باز می‌شود و همه امکانات برنامه را دارد: مدیریت حساب‌ها و حجم، انتخاب سرور و تست تاخیر، تست اتصال، لاگ زنده، و همه تنظیمات.
 
-<p align="center"><img src="../screenshots/web.webp" width="720" alt="Web panel"></p>
+<p align="center"><img src="../screenshots/akad-vpn-web-mockup.webp" width="900" alt="طرح نمایشی داشبورد وب AkadVPN با داده نمونه"></p>
+
+تصویر پنل وب ماکاپ نمایشی با داده‌های نمونه است و اسکرین‌شات اتصال واقعی نیست.
 
 - **آدرس پنل:** `http://SERVER-IP:10820/app/`&lrm;، با نام کاربری و رمز. آدرس دقیق در پایان نصب نمایش داده می‌شود.
 - **پروکسی:** SOCKS5 و HTTP روی پورت `10810`، با نام کاربری و رمز جدا.
