@@ -1,0 +1,35 @@
+name: Build iOS Go core (unsigned)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gomobile-ios:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: core/go.mod
+          cache-dependency-path: core/go.sum
+      - name: Install gomobile toolchain
+        working-directory: core
+        run: |
+          go install golang.org/x/mobile/cmd/gomobile
+          go install golang.org/x/mobile/cmd/gobind
+          "$(go env GOPATH)/bin/gomobile" init
+      - name: Build framework for iOS devices and simulators
+        working-directory: core
+        run: |
+          mkdir -p ../build/ios
+          "$(go env GOPATH)/bin/gomobile" bind -target=ios -o ../build/ios/AkadCore.xcframework ./mobile
+      - name: Upload unsigned framework
+        uses: actions/upload-artifact@v4
+        with:
+          name: akad-vpn-ios-go-core
+          path: build/ios/AkadCore.xcframework
+          if-no-files-found: error
