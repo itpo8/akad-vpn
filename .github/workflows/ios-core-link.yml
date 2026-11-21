@@ -1,0 +1,52 @@
+name: Verify iOS Go core linkage
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  link-core:
+    runs-on: macos-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ios/link-go-core
+          persist-credentials: true
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: core/go.mod
+          cache-dependency-path: core/go.sum
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.50.0'
+          channel: stable
+      - name: Build Go framework
+        working-directory: core
+        run: |
+          go install golang.org/x/mobile/cmd/gomobile
+          go install golang.org/x/mobile/cmd/gobind
+          "$(go env GOPATH)/bin/gomobile" init
+          mkdir -p ../build/ios
+          "$(go env GOPATH)/bin/gomobile" bind -target=ios -o ../build/ios/AkadCore.xcframework ./mobile
+          find ../build/ios/AkadCore.xcframework -name module.modulemap -print
+      - name: Link framework into Packet Tunnel
+        run: |
+          gem install --user-install xcodeproj --no-document
+          AKAD_LINK_IOS_CORE=1 ruby scripts/setup-ios-packet-tunnel.rb
+      - name: Commit Xcode target linkage
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app/ios/Runner.xcodeproj/project.pbxproj
+          if ! git diff --cached --quiet; then
+            git commit -m "ios: link Go XCFramework into Packet Tunnel"
+            git push origin HEAD:ios/link-go-core
+          fi
+      - name: Build unsigned iOS host and extension
+        working-directory: app
+        run: |
+          flutter pub get
+          flutter build ios --release --no-codesign
