@@ -26,7 +26,7 @@
 
 Для **Android, Windows, macOS и Linux**; полностью бесплатно, без рекламы.
 
-<p align="center"><a href="https://raw.githubusercontent.com/itpo8/akad-vpn/main/docs/screenshots/main.webp" target="_blank"><img src="../screenshots/main.webp" width="720" alt="AkadVPN"></a></p>
+<p align="center"><img src="../screenshots/akad-vpn-desktop.png" width="900" alt="Реальный интерфейс AkadVPN для Windows"></p>
 
 ## 🚀 Основные возможности
 
@@ -58,11 +58,7 @@
 
 ## 📸 Скриншоты
 
-<p align="center">
-<img src="../screenshots/phone_01.webp" width="240" alt="Home">&nbsp;&nbsp;
-<img src="../screenshots/phone_02.webp" width="240" alt="Servers">&nbsp;&nbsp;
-<img src="../screenshots/phone_03.webp" width="240" alt="Settings">
-</p>
+Выше показан настоящий снимок экрана AkadVPN для Windows. Снимки мобильного приложения будут добавлены после съемки на устройстве.
 
 ## 📥 Скачать
 
@@ -98,7 +94,7 @@ curl -fsSL https://raw.githubusercontent.com/itpo8/akad-vpn/main/install.sh | ba
 
 Для серверов Linux у AkadVPN есть **веб-панель**, которая открывается в любом браузере и умеет всё, что умеет приложение: управление аккаунтами и трафиком, выбор сервера и проверка задержки, проверка соединения, живой журнал и все настройки.
 
-<p align="center"><img src="../screenshots/web.webp" width="720" alt="Web panel"></p>
+Снимок веб-панели AkadVPN будет добавлен после съемки реального интерфейса.
 
 - **Адрес панели:** `http://SERVER-IP:10820/app/`, с именем пользователя и паролем. Точный адрес показывается в конце установки.
 - **Прокси:** SOCKS5 и HTTP на порту `10810`, с отдельными именем пользователя и паролем.
