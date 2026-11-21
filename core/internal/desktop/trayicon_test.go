@@ -6,8 +6,9 @@ import (
 	"testing"
 )
 
-// Every tray state has its icon in both formats: a PNG with a transparent
-// corner and the symbol's white upright bar in the middle, and an ICO.
+// Every tray state has an icon in both formats. AkadVPN's supplied brand
+// artwork uses a solid navy tile, rather than the upstream transparent tile
+// and its center-aligned upright bar.
 func TestTrayIcons(t *testing.T) {
 	for _, name := range []string{iconRunning, iconRunningAsleep, iconSet, iconSetAsleep, iconWaiting, iconError, iconOff} {
 		data, err := trayFiles.ReadFile("tray/" + name + ".png")
@@ -21,11 +22,23 @@ func TestTrayIcons(t *testing.T) {
 		if b := img.Bounds(); b.Dx() != 32 || b.Dy() != 32 {
 			t.Fatalf("%s: size %v", name, b)
 		}
-		if _, _, _, a := img.At(0, 0).RGBA(); a != 0 {
-			t.Fatalf("%s: the corner should be transparent", name)
+		// An icon must contain visible contrasting artwork, regardless of
+		// which part of the user's mark occupies its center pixel.
+		visible, bright := 0, 0
+		for y := 0; y < 32; y++ {
+			for x := 0; x < 32; x++ {
+				r, g, b, a := img.At(x, y).RGBA()
+				if a < 0x8000 {
+					continue
+				}
+				visible++
+				if r+g+b > 3*0x7000 {
+					bright++
+				}
+			}
 		}
-		if r, g, b, _ := img.At(16, 13).RGBA(); r>>8 < 0xf0 || g>>8 < 0xf0 || b>>8 < 0xf0 {
-			t.Fatalf("%s: the middle should be the white bar", name)
+		if visible == 0 || bright == 0 {
+			t.Fatalf("%s: icon must contain visible contrasting artwork", name)
 		}
 		ico, err := trayFiles.ReadFile("tray/" + name + ".ico")
 		if err != nil || !bytes.Equal(ico[:4], []byte{0, 0, 1, 0}) {
