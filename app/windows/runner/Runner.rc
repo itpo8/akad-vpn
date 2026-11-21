@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "AkadVPN" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "akad-vpn" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 Akad Web; based on Arman VPN (GPLv3)" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 Akad Web (GPLv3); upstream attribution in README" "\0"
             VALUE "OriginalFilename", "akad-vpn.exe" "\0"
             VALUE "ProductName", "AkadVPN" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
