@@ -15,8 +15,6 @@ unless extension
 end
 
 group = project.main_group.find_subpath(name, true)
-group.set_source_tree('<group>')
-group.set_path(name)
 source = group.files.find { |item| item.path == 'PacketTunnelProvider.swift' } ||
          group.new_file('PacketTunnelProvider.swift')
 %w[Info.plist PacketTunnel.entitlements].each do |file|
@@ -58,9 +56,7 @@ unless embed
 end
 embed.add_file_reference(extension.product_reference) unless
   embed.files_references.include?(extension.product_reference)
-runner.add_dependency(extension) unless runner.dependencies.any? do |dependency|
-  dependency.target == extension
-end
+runner.add_dependency(extension) unless runner.dependencies.any? { |dependency| dependency.target == extension }
 
 project.save
 puts 'Packet Tunnel extension target configured.'
