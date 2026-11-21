@@ -1,0 +1,40 @@
+name: Bootstrap iOS project
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scaffold:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ios/bootstrap
+          persist-credentials: true
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.50.0'
+          channel: stable
+      - name: Generate Flutter iOS host project
+        working-directory: app
+        run: |
+          flutter create --platforms=ios --org=com.akadweb --project-name=akadvpn --no-pub .
+          /usr/libexec/PlistBuddy -c 'Set :CFBundleDisplayName AkadVPN' ios/Runner/Info.plist || true
+      - name: Commit generated iOS project to development branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app/ios
+          if ! git diff --cached --quiet; then
+            git commit -m "ios: generate Flutter iOS host project"
+            git push origin HEAD:ios/bootstrap
+          fi
+      - name: Resolve Flutter packages
+        working-directory: app
+        run: flutter pub get
+      - name: Build iOS without signing
+        working-directory: app
+        run: flutter build ios --release --no-codesign
