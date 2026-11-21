@@ -550,7 +550,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           bash scripts/release-notes.sh "$GITHUB_REF_NAME" > notes.md
-          gh release create "$GITHUB_REF_NAME" release/* \
-            --repo "$GITHUB_REPOSITORY" \
-            --title "AkadVPN ${{ needs.test.outputs.version }}" \
-            --notes-file notes.md
+          if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" release/* --repo "$GITHUB_REPOSITORY" --clobber
+            gh release edit "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --title "AkadVPN ${{ needs.test.outputs.version }}" --notes-file notes.md
+          else
+            gh release create "$GITHUB_REF_NAME" release/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "AkadVPN ${{ needs.test.outputs.version }}" \
+              --notes-file notes.md
+          fi
