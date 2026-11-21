@@ -57,6 +57,12 @@ unless embed
 end
 embed.add_file_reference(extension.product_reference) unless
   embed.files_references.include?(extension.product_reference)
+
+# Flutter's Thin Binary script must run after extension embedding to avoid
+# an Xcode Runner dependency cycle (Info.plist -> Thin Binary -> Embed).
+runner.build_phases.delete(embed)
+thin_binary_index = runner.build_phases.index { |phase| phase.respond_to?(:name) && phase.name == 'Thin Binary' }
+runner.build_phases.insert(thin_binary_index || runner.build_phases.length, embed)
 runner.add_dependency(extension) unless runner.dependencies.any? { |dependency| dependency.target == extension }
 
 project.save
