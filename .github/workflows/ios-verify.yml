@@ -20,8 +20,9 @@ jobs:
           channel: stable
       - name: Build iOS icons from supplied Akad Web artwork
         run: |
-          python3 -m pip install --quiet --user pillow
-          python3 app/tool/app_icons.py
+          python3 -m venv "$RUNNER_TEMP/akad-python"
+          "$RUNNER_TEMP/akad-python/bin/python" -m pip install --quiet pillow
+          "$RUNNER_TEMP/akad-python/bin/python" app/tool/app_icons.py
       - name: Commit generated iOS icons
         run: |
           git config user.name 'github-actions[bot]'
