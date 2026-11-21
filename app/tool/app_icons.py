@@ -38,6 +38,7 @@ Run from app/ after changing the symbol or the colors (needs Pillow):
 
     python tool/app_icons.py
 """
+import json
 import os
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
@@ -364,6 +365,22 @@ def branded_assets():
         path = os.path.join(APP, 'macos', 'Runner', 'Assets.xcassets',
                             'AppIcon.appiconset', 'app_icon_%d.png' % n)
         square(n).save(path, optimize=True)
+
+    # iOS AppIcon sizes are declared by the Flutter-generated asset catalog.
+    # Keep the supplied artwork intact and center-fit it on the navy tile.
+    ios_icons = os.path.join(APP, 'ios', 'Runner', 'Assets.xcassets', 'AppIcon.appiconset')
+    manifest = os.path.join(ios_icons, 'Contents.json')
+    if os.path.isfile(manifest):
+        with open(manifest, encoding='utf-8') as handle:
+            entries = json.load(handle)['images']
+        for entry in entries:
+            filename = entry.get('filename')
+            if not filename:
+                continue
+            points = float(entry['size'].split('x')[0])
+            scale = int(entry['scale'].removesuffix('x'))
+            square(round(points * scale)).convert('RGB').save(
+                os.path.join(ios_icons, filename), optimize=True)
 
     square(512).save(os.path.join(APP, 'linux', 'runner', 'resources', 'app_icon.png'), optimize=True)
     square(512).save(os.path.join(APP, '..', 'docs', 'images', 'logo.png'), optimize=True)
