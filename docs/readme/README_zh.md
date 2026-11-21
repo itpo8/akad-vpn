@@ -28,6 +28,10 @@
 
 <p align="center"><img src="../screenshots/akad-vpn-desktop.png" width="900" alt="AkadVPN Windows 桌面真实界面"></p>
 
+<p align="center"><img src="../screenshots/akad-vpn-devices-mockup.webp" width="900" alt="AkadVPN 电脑和手机概念展示图"></p>
+
+<p align="center"><sub>设备展示图为示意设计，并非真实运行截图。</sub></p>
+
 ## 🚀 主要功能
 
 ✈️ 跨平台：Android、Windows、macOS 和 Linux
@@ -58,7 +62,9 @@
 
 ## 📸 截图
 
-上方展示的是 AkadVPN Windows 版的真实截图。移动端截图将在设备上实际截取后补充。
+<p align="center"><img src="../screenshots/akad-vpn-mobile-mockup.webp" width="900" alt="AkadVPN 手机端主页、服务器和设置界面示意图"></p>
+
+上面的 Windows 截图是真实的；手机页面是概念示意图。实际截图将在真机测试后补充。
 
 ## 📥 下载
 
@@ -94,7 +100,9 @@ curl -fsSL https://raw.githubusercontent.com/itpo8/akad-vpn/main/install.sh | ba
 
 在 Linux 服务器上，AkadVPN 提供一个**网页面板**，可在任何浏览器中打开，拥有应用的全部功能：管理账户和流量、选择服务器并测试延迟、连接测试、实时日志以及所有设置。
 
-AkadVPN 网页面板截图将在实际运行后补充。
+<p align="center"><img src="../screenshots/akad-vpn-web-mockup.webp" width="900" alt="AkadVPN 网页面板示意图（演示数据）"></p>
+
+网页面板为使用演示数据的概念图，并非真实连接截图。
 
 - **面板地址：** `http://SERVER-IP:10820/app/`，需要用户名和密码。安装结束时会显示确切地址。
 - **代理：** 端口 `10810` 上的 SOCKS5 和 HTTP，使用单独的用户名和密码。
