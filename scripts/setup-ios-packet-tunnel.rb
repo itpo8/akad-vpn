@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+# One-time, idempotent Xcode target setup for AkadVPN's iOS Packet Tunnel.
+# Run on macOS with the xcodeproj gem installed.
+require 'xcodeproj'
+
+path = File.expand_path('../app/ios/Runner.xcodeproj', __dir__)
+project = Xcodeproj::Project.open(path)
+runner = project.targets.find { |target| target.name == 'Runner' }
+abort('Runner target missing') unless runner
+
+name = 'AkadPacketTunnel'
+extension = project.targets.find { |target| target.name == name }
+unless extension
+  extension = project.new_target(:app_extension, name, :ios, '15.0')
+end
+
+group = project.main_group.find_subpath(name, true)
+group.set_source_tree('<group>')
+group.set_path(name)
+source = group.files.find { |item| item.path == 'PacketTunnelProvider.swift' } ||
+         group.new_file('PacketTunnelProvider.swift')
+%w[Info.plist PacketTunnel.entitlements].each do |file|
+  group.new_file(file) unless group.files.any? { |item| item.path == file }
+end
+extension.source_build_phase.add_file_reference(source) unless
+  extension.source_build_phase.files_references.include?(source)
+
+extension.build_configurations.each do |configuration|
+  settings = configuration.build_settings
+  settings['PRODUCT_BUNDLE_IDENTIFIER'] = 'com.akadweb.akadvpn.PacketTunnel'
+  settings['PRODUCT_NAME'] = '$(TARGET_NAME)'
+  settings['INFOPLIST_FILE'] = 'AkadPacketTunnel/Info.plist'
+  settings['CODE_SIGN_ENTITLEMENTS'] = 'AkadPacketTunnel/PacketTunnel.entitlements'
+  settings['GENERATE_INFOPLIST_FILE'] = 'NO'
+  settings['SWIFT_VERSION'] = '5.0'
+  settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+  settings['TARGETED_DEVICE_FAMILY'] = '1,2'
+  settings['APPLICATION_EXTENSION_API_ONLY'] = 'YES'
+  settings['CODE_SIGN_STYLE'] = 'Automatic'
+  settings['SKIP_INSTALL'] = 'YES'
+  settings['MARKETING_VERSION'] = '1.0.19'
+  settings['CURRENT_PROJECT_VERSION'] = '157'
+end
+runner.build_configurations.each do |configuration|
+  configuration.build_settings['CODE_SIGN_ENTITLEMENTS'] = 'Runner/Runner.entitlements'
+end
+
+embed = runner.build_phases.find do |phase|
+  phase.is_a?(Xcodeproj::Project::Object::PBXCopyFilesBuildPhase) &&
+    phase.name == 'Embed App Extensions'
+end
+unless embed
+  embed = project.new(Xcodeproj::Project::Object::PBXCopyFilesBuildPhase)
+  embed.name = 'Embed App Extensions'
+  embed.dst_subfolder_spec = '13'
+  embed.dst_path = ''
+  runner.build_phases << embed
+end
+embed.add_file_reference(extension.product_reference) unless
+  embed.files_references.include?(extension.product_reference)
+runner.add_dependency(extension) unless runner.dependencies.any? do |dependency|
+  dependency.target == extension
+end
+
+project.save
+puts 'Packet Tunnel extension target configured.'
