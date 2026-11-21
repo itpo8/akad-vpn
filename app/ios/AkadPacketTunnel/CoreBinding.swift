@@ -32,7 +32,10 @@ enum AkadCoreBinding {
   /// Run the daemon with proxy disabled until packet forwarding is ready.
   /// Any failure propagates back to the Packet Tunnel lifecycle controller.
   static func startDisabled() throws {
-    try MobileStart(dataDirectory(), false)
+    let directory = try dataDirectory()
+    var coreError: NSError?
+    MobileStart(directory, false, &coreError)
+    if let coreError { throw coreError }
   }
 
   static func stop() {
