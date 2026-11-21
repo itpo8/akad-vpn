@@ -30,19 +30,73 @@ ThemeData _theme(Brightness brightness, Locale locale) {
   // platform's typography for the remaining languages.
   final font = languageFont(locale.languageCode);
   final theme = ThemeData(
+    useMaterial3: true,
     colorScheme: scheme,
     fontFamily: font,
     scaffoldBackgroundColor: dark ? AkadTheme.navy : AkadTheme.pale,
+    dividerColor: scheme.outlineVariant.withValues(alpha: 0.55),
     cardTheme: CardThemeData(
       elevation: 0,
       color: dark ? const Color(0xCC10264A) : Colors.white,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: AkadTheme.cardRadius,
         side: BorderSide(color: scheme.outlineVariant.withValues(alpha: 0.55)),
       ),
     ),
   );
   return theme.copyWith(
+    appBarTheme: AppBarTheme(
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      centerTitle: false,
+      backgroundColor: dark ? AkadTheme.navy : AkadTheme.pale,
+      foregroundColor: scheme.onSurface,
+      surfaceTintColor: Colors.transparent,
+    ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        backgroundColor: AkadTheme.blue,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+        shape: RoundedRectangleBorder(borderRadius: AkadTheme.controlRadius),
+        textStyle: const TextStyle(fontWeight: FontWeight.w700),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: scheme.primary,
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+        side: BorderSide(color: scheme.outlineVariant),
+        shape: RoundedRectangleBorder(borderRadius: AkadTheme.controlRadius),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: dark ? AkadTheme.deepBlue : Colors.white,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+      border: OutlineInputBorder(
+        borderRadius: AkadTheme.controlRadius,
+        borderSide: BorderSide(color: scheme.outlineVariant),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: AkadTheme.controlRadius,
+        borderSide: BorderSide(color: scheme.outlineVariant),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: AkadTheme.controlRadius,
+        borderSide: const BorderSide(color: AkadTheme.blue, width: 1.8),
+      ),
+    ),
+    dialogTheme: DialogThemeData(
+      backgroundColor: dark ? AkadTheme.deepBlue : Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: AkadTheme.cardRadius),
+    ),
+    snackBarTheme: SnackBarThemeData(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: dark ? AkadTheme.surface : AkadTheme.ink,
+      contentTextStyle: const TextStyle(color: Colors.white),
+      shape: RoundedRectangleBorder(borderRadius: AkadTheme.controlRadius),
+    ),
     navigationRailTheme: NavigationRailThemeData(
       backgroundColor: dark ? AkadTheme.deepBlue : const Color(0xFFE5EFFC),
       // NavigationRail replaces DefaultTextStyle, so retain the resolved
