@@ -139,6 +139,7 @@
 				7BF64E7788B4313D439F4145 /* PacketTunnel.entitlements */,
 			);
 			name = AkadPacketTunnel;
+			path = AkadPacketTunnel;
 			sourceTree = "<group>";
 		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
