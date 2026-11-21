@@ -15,6 +15,7 @@ unless extension
 end
 
 group = project.main_group.find_subpath(name, true)
+group.path = name # Resolve source paths under app/ios/AkadPacketTunnel.
 source = group.files.find { |item| item.path == 'PacketTunnelProvider.swift' } ||
          group.new_file('PacketTunnelProvider.swift')
 %w[Info.plist PacketTunnel.entitlements].each do |file|
