@@ -9,12 +9,10 @@
 
 <h1 align="center">AkadVPN</h1>
 
-> **AkadVPN fork:** This is an independently rebranded derivative of
-> [Arman VPN](https://github.com/armanlife/arman-vpn-client), distributed
-> under the GNU GPLv3. Original copyright and license notices are retained.
-> AkadVPN is not affiliated with Mozilla or the original project's maintainers.
-> Before publishing builds, configure your actual GitHub repository and
-> signing secrets using [the release guide](docs/AKADVPN-RELEASE.md).
+**AkadVPN** — a cross-platform VPN client by Akad Web.
+
+For downloads and installation instructions, see the sections below. Release
+maintainers can use the [release guide](docs/AKADVPN-RELEASE.md).
 
 ### Akad Web theme
 
@@ -206,3 +204,10 @@ The first start prints a panel login and a proxy login. Accounts and settings st
 This app is an independent, unofficial client, made and maintained by its own developer. It is not a Mozilla product: Mozilla did not make it, does not own, sponsor, or endorse it, and has no part in its development or support. Questions and problems about the app belong in this repository, not with Mozilla.
 
 You sign in with your own Mozilla account. The account's terms, data limit, and availability are set by Mozilla. Your password and sign-in tokens stay on your device.
+
+### Open-source acknowledgments
+
+AkadVPN is based on the open-source [Arman VPN](https://github.com/armanlife/arman-vpn-client)
+project and is distributed under GNU GPLv3. Original copyright and license notices
+are preserved. AkadVPN is independent of the upstream maintainers.
+
