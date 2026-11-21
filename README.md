@@ -205,9 +205,7 @@ This app is an independent, unofficial client, made and maintained by its own de
 
 You sign in with your own Mozilla account. The account's terms, data limit, and availability are set by Mozilla. Your password and sign-in tokens stay on your device.
 
-### Open-source acknowledgments
+### License and notices
 
-AkadVPN is based on the open-source [Arman VPN](https://github.com/armanlife/arman-vpn-client)
-project and is distributed under GNU GPLv3. Original copyright and license notices
-are preserved. AkadVPN is independent of the upstream maintainers.
+AkadVPN is distributed under GNU GPLv3. See the [license](LICENSE) and [open-source notices](NOTICE.md) for details.
 
